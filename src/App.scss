@@ -1,0 +1,184 @@
+// 1. Color Variables (Neon Palette)
+$primary-pink: #ff00cc;
+$secondary-purple: #3333ff;
+$accent-yellow: #ffff66;
+$accent-cyan: #66ffff;
+$accent-magenta: #ff66ff;
+$bg-dark: #0f051d;
+$bg-gradient-start: #0f051d;
+$bg-gradient-end: #1a0b2e;
+$glass-bg: rgba(30, 15, 60, 0.4);
+$glass-border: rgba(150, 100, 255, 0.2);
+
+// 2. Spacing & Sizing Variables
+$container-max: 1200px;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 3rem;
+$spacing-xl: 4rem;
+$border-radius: 50px;
+$card-radius: 20px;
+
+// 3. Shadow & Glow Mixins
+@mixin neon-glow($color, $blur: 20px, $spread: 0px) {
+    box-shadow: 0 0 $blur $spread rgba($color, 0.4);
+    text-shadow: 0 0 $blur rgba($color, 0.3);
+}
+
+@mixin neon-hover($color) {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    &:hover {
+        transform: translateY(-15px);
+        @include neon-glow($color, 40px, 0px);
+    }
+}
+
+// 4. Button Mixins
+@mixin btn-base {
+    padding: 14px 32px;
+    border: none;
+    border-radius: $border-radius;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+@mixin btn-primary {
+    @include btn-base;
+    background: linear-gradient(45deg, $primary-pink, lighten($primary-pink, 10%));
+    @include neon-glow($primary-pink);
+
+    &:hover {
+        transform: translateY(-3px);
+        @include neon-glow($primary-pink, 30px);
+    }
+}
+
+@mixin btn-secondary {
+    @include btn-base;
+    background: linear-gradient(45deg, $secondary-purple, darken($secondary-purple, 10%));
+    @include neon-glow($secondary-purple);
+
+    &:hover {
+        transform: translateY(-3px);
+        @include neon-glow($secondary-purple, 30px);
+    }
+}
+
+// ============================================
+// Global Styles
+// ============================================
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+}
+
+body {
+
+    color: white;
+    background: url(./image/background.webp) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+
+    overflow-x: hidden;
+    line-height: 1.6;
+    min-width: 320px;
+}
+
+.container {
+    max-width: $container-max;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.App {
+    @import './styles/HeroSection.scss';
+    @import './styles/WelcomeSection.scss';
+    @import './styles/CoursesSection.scss';
+    @import './styles/WhySection.scss';
+    @import './styles/Footer.scss';
+    @import './styles/AboutSchool.scss';
+ 
+
+    .btn {
+        position: relative;
+        padding: 14px 34px;
+        border-radius: 999px;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        color: #fff;
+        z-index: 1;
+        transition: all 0.35s ease;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg,
+                    #ff4ecd,
+                    #7b5cff,
+                    #3bc9ff);
+            mask:
+                linear-gradient(#000 0 0) content-box,
+                linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg,
+                    #ff4ecd,
+                    #7b5cff,
+                    #3bc9ff);
+            filter: blur(18px);
+            opacity: 0.45;
+            z-index: -2;
+            transition: opacity 0.35s ease;
+        }
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+
+        &:hover::after {
+            opacity: 0.8;
+        }
+
+
+    }
+
+    .btn.primary {
+        background: linear-gradient(135deg,
+                rgba(87, 48, 76, 0.25),
+                rgba(31, 11, 122, 0.25));
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+    }
+
+    .btn.secondary {
+        background: linear-gradient(135deg,
+                rgba(59, 201, 255, 0.25),
+                rgba(123, 92, 255, 0.25));
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+    }
+}
