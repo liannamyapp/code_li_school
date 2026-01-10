@@ -83,7 +83,7 @@ export default function CoursesSection() {
                         <p>{selectedCourse.fullDesc}</p>
 
                         <a href='https://forms.gle/tx8aaDhYGVnw7vsk7' target='_blank' rel="noreferrer" className="btn course-btn">
-                            Գրանցվել դասընթացին
+                            Գրանցվել
                         </a>
                     </div>
                 </div>
