@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import notebook from './../image/Notebook.png'
 import hraman from '../image/hraman.jpg'
+import {Link} from 'react-router-dom'
 const WelcomeSection = () => {
     return (
         <section className="welcome">
@@ -37,9 +38,9 @@ const WelcomeSection = () => {
                     <motion.a  href={hraman}  target='_blank'  rel='noreferrer' className="btn primary" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                         Տեսնել հրամանը
                     </motion.a>
-                    <motion.a href='/about' className="btn secondary" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                    <Link to='/about' className="btn secondary" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                         Մեր մասին
-                    </motion.a>
+                    </Link>
                 </motion.div>
             </motion.div>
             <motion.div
